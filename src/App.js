@@ -1,6 +1,6 @@
 const url = 'https://a247ba36-c96c-4c9c-8eb4-59be066afde6.mock.pstmn.io'
 const $rooms = document.querySelector('.roomlist'); 
-const roomList = axios.get("https://a247ba36-c96c-4c9c-8eb4-59be066afde6.mock.pstmn.io/roomlist");
+const roomList = axios.get("http://localhost:8080/api/user");
 roomList
 .then((e) => {
   for(let i = 0; i < e.data.length; i++){
@@ -27,7 +27,20 @@ roomList
     })
 
 
-
+axios.post('http://localhost:8080/api/group', 
+    {
+      
+      'uid': 3,
+      'group_title' : 'test',
+      'group_detail' : 'testset'
+    }
+  )
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 
         
         
