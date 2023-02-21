@@ -1,30 +1,24 @@
 const url = 'https://a247ba36-c96c-4c9c-8eb4-59be066afde6.mock.pstmn.io'
 const $rooms = document.querySelector('.roomlist'); 
-const roomList = axios.get("http://localhost:8080/api/user");
-roomList
-.then((e) => {
-  for(let i = 0; i < e.data.length; i++){
-  $rooms.innerHTML +=  `
-    <div class="room" data-id="${e.data[i].id}">
-    <h3>${e.data[i].name}</h3>
-    <p>${e.data[i].price}</p>
-    </div>
-    `
-  }   
-  
-  }).then(() => {
-    const roomsSelected = document.querySelectorAll('.room');
-    for(let i =0; i< roomsSelected.length; i++){
-      roomsSelected[i].addEventListener('click',() =>{
-
-        window.location.href = `room.html?id=${roomsSelected[i].dataset.id}`
-    })
-  }
-
+axios.get("https://a247ba36-c96c-4c9c-8eb4-59be066afde6.mock.pstmn.io/roomlist")
+.then((response) => {
+  const rooms = response.data;
+  const roomElements = rooms.map((room) => {
+    const roomElement = document.createElement('div');
+    roomElement.className = 'room';
+    roomElement.dataset.id = room.id;
+    roomElement.innerHTML = `
+      <h3>${room.name}</h3>
+      <p>${room.price}</p>
+    
+    `;
+    roomElement.addEventListener('click', () =>{
+      window.location.href = `room.html?id=${room.id}`;
+    });
+    return roomElement;
   })
-  .catch((err) => {
-      console.log(err.message)
-    })
+
+  $rooms.append(...roomElements)
 
 
 axios.post('http://localhost:8080/api/group', 
@@ -41,13 +35,3 @@ axios.post('http://localhost:8080/api/group',
   .catch(function (error) {
     console.log(error);
   });
-
-        
-        
-  
-    
- 
-  
-  
-  
-  
