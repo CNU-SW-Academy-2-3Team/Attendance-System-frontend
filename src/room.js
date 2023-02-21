@@ -1,25 +1,21 @@
 const url = new URL(window.location.href);
-const urlParams = url.searchParams;
-const roomId = urlParams.get('id');
+const roomId = url.searchParams.get('id');
 
 const $roomInfo = document.querySelector('.roominfo');    
-const roomInfo_API = axios.get(`https://a247ba36-c96c-4c9c-8eb4-59be066afde6.mock.pstmn.io/roomlist/${roomId}`);
-roomInfo_API
-.then((e) => {
+axios.get(`https://a247ba36-c96c-4c9c-8eb4-59be066afde6.mock.pstmn.io/roomlist/${roomId}`)
+.then((response) => {
+  const room = response.data;
+
+  const roomElement = document.createElement('div');
   
-      
-    
-  $roomInfo.innerHTML +=  `
-    <div class="room">
-    <h3>${e.data.name}</h3>
-    <p>${e.data.price}</p>
-    <p>${e.data.seller}</p>
-    </div>
-    `
-      
+  roomElement.className = 'room';
+  roomElement.innerHTML = `
+    <h3>${room.name}</h3>
+    <p>${room.price}</p>
+    <p>${room.seller}</p>
   
-  console.log(e.data)
-      
+  `;
+  $roomInfo.append(roomElement)    
     
   })
   .catch((err) => {
