@@ -1,6 +1,5 @@
 const url = 'https://a247ba36-c96c-4c9c-8eb4-59be066afde6.mock.pstmn.io'
 const $rooms = document.querySelector('.roomlist'); 
-
 axios.get("https://a247ba36-c96c-4c9c-8eb4-59be066afde6.mock.pstmn.io/roomlist")
 .then((response) => {
   const rooms = response.data;
@@ -20,11 +19,6 @@ axios.get("https://a247ba36-c96c-4c9c-8eb4-59be066afde6.mock.pstmn.io/roomlist")
   })
 
   $rooms.append(...roomElements)
-
-})
-.catch((err) => {
-    console.error(err.message)
-  })
 
 
 axios.post('http://localhost:8080/api/group', 
