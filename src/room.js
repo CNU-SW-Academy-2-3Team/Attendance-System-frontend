@@ -1,8 +1,9 @@
+import { API_END_POINT } from "./API.js";
 const url = new URL(window.location.href);
 const roomId = url.searchParams.get('id');
 
 const $roomInfo = document.querySelector('.roominfo');    
-axios.get(`https://a247ba36-c96c-4c9c-8eb4-59be066afde6.mock.pstmn.io/roomlist/${roomId}`)
+axios.get(`${API_END_POINT}/group/${roomId}`)
 .then((response) => {
   const room = response.data;
 
@@ -10,9 +11,12 @@ axios.get(`https://a247ba36-c96c-4c9c-8eb4-59be066afde6.mock.pstmn.io/roomlist/$
   
   roomElement.className = 'room';
   roomElement.innerHTML = `
-    <h3>${room.name}</h3>
-    <p>${room.price}</p>
-    <p>${room.seller}</p>
+    <div id="roomTitle">
+      <h3>${room.group_title}</h3>
+    </div>
+    <p>${room.group_detail}</p>
+    <p>초대 코드 : ${room.invite_code}</p>
+    
   
   `;
   $roomInfo.append(roomElement)    

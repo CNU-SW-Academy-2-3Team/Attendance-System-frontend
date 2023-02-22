@@ -1,3 +1,5 @@
+
+import { API_END_POINT } from "./API.js";
 const $groupCreate = document.querySelector('.room-create')
 
 
@@ -27,7 +29,7 @@ $groupCreateButton.addEventListener('click',() => {
     console.log(groupDes);
 
     if(groupName && groupDes){
-        postgroupCreate(groupName,groupDes);
+        postGroupCreate(groupName,groupDes);
     }
     else{
         alert("정보를 전부입력해 주세요");
@@ -37,23 +39,30 @@ $groupCreateButton.addEventListener('click',() => {
 
 
 
-function postgroupCreate(groupName,groupDes){
-    axios.post('http://localhost:8080/api/group', 
+function postGroupCreate(groupName,groupDes){
+    let nowTime = new Date();
+    console.log(nowTime)
+    axios.post(`${API_END_POINT}/group`, 
         {
-      
-            'uid': 3,
+            
+            'uid' : 3,
             'group_title' : groupName,
-            'group_detail' : groupDes
+            'group_detail' : groupDes,
+            
+            
         }
     )
     .then(function (response) {
         console.log(response);
+        const inviteCode = response.data;
+        alert(`그룹 개설이 완료되었습니다. 초대코드:${inviteCode}`)
+       
+        location.href='index.html'
+        
     })
     .catch(function (error) {
         console.log(error);
     });
-
-
 
 }
 

@@ -1,20 +1,22 @@
-const url = 'https://a247ba36-c96c-4c9c-8eb4-59be066afde6.mock.pstmn.io'
+import { API_END_POINT } from "./API.js";
 const $rooms = document.querySelector('.roomlist'); 
 
-axios.get("https://a247ba36-c96c-4c9c-8eb4-59be066afde6.mock.pstmn.io/roomlist")
+axios.get(`${API_END_POINT}/user/3/groups/created`)
 .then((response) => {
   const rooms = response.data;
   const roomElements = rooms.map((room) => {
     const roomElement = document.createElement('div');
     roomElement.className = 'room';
-    roomElement.dataset.id = room.id;
+    roomElement.dataset.id = room.gid;
     roomElement.innerHTML = `
-      <h3>${room.name}</h3>
-      <p>${room.price}</p>
+      <h3>${room.group_title}</h3>
+      <p>${room.group_detail}</p>
+      <p>by ${room.master_uid}</p>
+      <p>참가자 수 : ${room.head_count}</p>
     
     `;
     roomElement.addEventListener('click', () =>{
-      window.location.href = `room.html?id=${room.id}`;
+      window.location.href = `room.html?id=${room.gid}`;
     });
     return roomElement;
   })
