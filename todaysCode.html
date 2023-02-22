@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="./src/node_modules/axios/dist/axios.min.js">
+        
+    </script>
+<meta charset="EUC-KR">
+    <title>Child</title>
+    <script type="text/javascript">
+        
+        
+        function setExpiredTime(){
+            const url = new URL(window.location.href);
+            const roomId = url.searchParams.get('id');
+            if(document.getElementById("startTime").value && document.getElementById("endTime").value){
+                axios.put(`http://localhost:8080/api/attendance`,{
+                    'gid': roomId,
+                    'acceptStartTime' : document.getElementById("startTime").value,
+                    'acceptEndTime' : document.getElementById("endTime").value
+
+                })
+                .then((response) => {
+
+                })
+                opener.document.getElementById("startTime").value = document.getElementById("startTime").value
+                opener.document.getElementById("endTime").value = document.getElementById("endTime").value
+                window.close()
+            }else{
+                alert("시간을 정확하게 입력해주세요")
+            }
+        }
+   </script>
+ 
+</head>
+<body>
+    <br>
+    <b><font size="5" color="gray">오늘의 모임 코드 생성하기</font></b>
+    <br><br>
+ 
+    <input type="time" id="startTime" value="모임 시작 시간"><br><br>
+    <input type="time" id="endTime" value="출석 인정 시간"><br><br>
+    <input type="button" value="전달하기" onclick="setExpiredTime()">
+    <input type="button" value="창닫기" onclick="window.close()">
+</body>
+</html>
