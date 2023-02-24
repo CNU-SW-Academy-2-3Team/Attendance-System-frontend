@@ -40,12 +40,13 @@ $groupCreateButton.addEventListener('click',() => {
 
 
 function postGroupCreate(groupName,groupDes){
+    const userUid = Number(sessionStorage.getItem('UID'));
     let nowTime = new Date();
     console.log(nowTime)
     axios.post(`${API_END_POINT}/group`, 
         {
             
-            'uid' : 3,
+            'uid' : userUid,
             'group_title' : groupName,
             'group_detail' : groupDes,
             
