@@ -16,6 +16,7 @@ axios.get(`${API_END_POINT}/group/${roomId}`)
     </div>
     <p>${room.group_detail}</p>
     <p>초대 코드 : ${room.invite_code}</p>
+    <p>현재 출석 코드 : ${room.attendance_code ? room.attendance_code : '생성된 코드가 없습니다.'}</p>
     
   
   `;
