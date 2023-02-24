@@ -1,7 +1,7 @@
 import { API_END_POINT } from "./API.js";
 const $rooms = document.querySelector('.roomlist'); 
-
-axios.get(`${API_END_POINT}/user/3/groups/created`)
+const userUid = sessionStorage.getItem('UID');
+axios.get(`${API_END_POINT}/user/${userUid}/groups/created`)
 .then((response) => {
   const rooms = response.data;
   const roomElements = rooms.map((room) => {
