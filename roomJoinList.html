@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="./src/node_modules/axios/dist/axios.min.js"></script>
+  <style>
+    body {
+      background-color: white;
+    }
+
+    .navigation {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    .navigation a {
+      text-decoration: none;
+      color: black;
+      font-size: 18px;
+      margin-right: 20px;
+    }
+
+    .roomlist {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+
+    .room {
+      width: 25%;
+      text-align: center;
+      margin-bottom: 20px;
+      border: 1px solid black;
+      border-radius: 15px
+    }
+
+  </style>
+  <script src = "./src/roomJoinList.js" type="module"></script>
+</head>
+<body>
+  <div class="navigation">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </div>
+  <div>
+    <button type="button" onClick="location.href='roomCreate.html'">새 모임 만들기</button>
+    <button type="button" onClick="">새 방에 참가하기</button>
+    <button type="button" onClick="location.href='index.html'">내가 생성한 방</button>
+    <button type="button" onClick="sessionStorage.setItem('UID', '3');location.reload()">유저3 로긴하기</button>
+    <button type="button" onClick="sessionStorage.setItem('UID', '5');location.reload()">유저5 로긴하기</button>
+  </div>
+  <div><h2>내가 참여중인 방</h2></div>
+
+  <div class="roomlist">
+  </div>
+
+    
+</body>
+
+
+</html>
