@@ -35,7 +35,7 @@
     }
 
   </style>
-  <script src = "./src/App.js" type="module"></script>
+  <script src = "./src/roomList.js" type="module"></script>
 </head>
 <body>
   <div class="navigation">
@@ -45,9 +45,11 @@
   </div>
   <div>
     <button type="button" onClick="location.href='roomCreate.html'">새 모임 만들기</button>
+    <button type="button" onClick="location.href='roomJoinList.html'">내가 참여중인 방</button>
     <button type="button" onClick="sessionStorage.setItem('UID', '3');location.reload()">유저3 로긴하기</button>
     <button type="button" onClick="sessionStorage.setItem('UID', '5');location.reload()">유저5 로긴하기</button>
   </div>
+  <div><h2>내가 생성한 방</h2></div>
 
   <div class="roomlist">
   </div>
