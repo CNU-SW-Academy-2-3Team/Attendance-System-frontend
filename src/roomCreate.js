@@ -57,6 +57,7 @@ function postGroupCreate(groupName,groupDes){
         console.log(response);
         const inviteCode = response.data;
         alert(`그룹 개설이 완료되었습니다. 초대코드:${inviteCode}`)
+        
        
         location.href='index.html'
         
@@ -64,6 +65,7 @@ function postGroupCreate(groupName,groupDes){
     .catch(function (error) {
         console.log(error);
     });
+    
 
 }
 

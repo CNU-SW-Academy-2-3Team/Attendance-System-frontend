@@ -4,6 +4,8 @@
     <script src="./src/node_modules/axios/dist/axios.min.js">
         
     </script>
+    <script src = "./src/roomJoinList.js" type="module"></script>
+
 <meta charset="EUC-KR">
     <title>Child</title>
     <script type="text/javascript">
@@ -26,7 +28,7 @@
                     console.log(document.getElementById("startTime").value);
                     console.log(document.getElementById("endTime").value);
                     opener.location.reload();
-                    // window.close();
+                    window.close();
 
                 })
                 
@@ -42,8 +44,8 @@
     <b><font size="5" color="gray">오늘의 모임 코드 생성하기</font></b>
     <br><br>
  
-    <input type="datetime-local" id="startTime" value="모임 시작 시간"><br><br>
-    <input type="datetime-local" id="endTime" value="출석 인정 시간"><br><br>
+    <p>시작시간</p><input type="datetime-local" id="startTime" value=""><br><br>
+    <p>종료시간</p><input type="datetime-local" id="endTime" value=""><br><br>
     <input type="button" value="전달하기" onclick="setExpiredTime()">
     <input type="button" value="창닫기" onclick="window.close()">
 </body>
