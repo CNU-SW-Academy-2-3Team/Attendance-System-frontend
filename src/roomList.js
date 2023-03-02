@@ -21,6 +21,16 @@ axios.get(`${API_END_POINT}/user/${userUid}/groups/created`)
     return roomElement;
   })
 
+  const $navigation = document.querySelector('.navigation')
+  const navigationUserDiv = document.createElement('div')
+  navigationUserDiv.className = 'accountInfo'
+  const $accountMenu = document.createElement('a')
+  $accountMenu.href = "#"
+  $accountMenu.textContent = '현재 로그인한 유저' + userUid
+  navigationUserDiv.appendChild($accountMenu)
+  $navigation.appendChild(navigationUserDiv)
+
+
   $rooms.append(...roomElements)
 
 })

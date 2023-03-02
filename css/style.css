@@ -1,0 +1,99 @@
+  body {
+    background-color: white;
+    padding: 30px;
+    margin: 0;
+  }
+
+  .navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 3px #6D6D6D;
+    height: 50px;
+    padding: 20px;
+    margin: -30px;
+    margin-bottom: 30px;
+    border-bottom: none;
+  }
+
+  .navigation a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    margin-right: 50px;
+  }
+  
+  .accountInfo{
+    position: absolute;
+    right: 0;
+    
+  }
+
+  .roomlist {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    
+  }
+
+  .room {
+    display: flex;
+    width: 350px;
+    height: 300px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+    margin:25px;
+    border: none;
+    box-shadow: 0 0 5px #6D6D6D;
+    background-color: #ECFCF3;
+    border-radius: 1em;
+  }
+  .roominfo {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .roomInfoElement{
+    display: inherit;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 70px;
+  }
+  .makeInviteCode{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .room-create{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #roomForm{
+      
+  }
+  #roomTitle {
+    width: 300px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 15px
+  }
+
+
+button {
+    background-color: #2BAE66;
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 1em;
+}
+
+#buttonGroup{
+    margin-bottom: 30px;
+}
