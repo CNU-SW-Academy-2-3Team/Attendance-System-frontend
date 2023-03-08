@@ -6,7 +6,7 @@
     </script>
     <link rel="stylesheet" href="./css/style.css">
 <meta charset="EUC-KR">
-    <title>Child</title>
+    <title>출석 체크 하기</title>
     <script type="text/javascript">
         
         
@@ -51,11 +51,13 @@
 </head>
 <body>
     <br>
+    <div class="popUpForm">
     <b><font size="5" color="gray">출석체크 하기</font></b>
     <br><br>
  
     <input type="text" id="attendCode" placeholder="출석체크코드"><br><br>
-    <input type="button" value="출석하기" onclick="checkAttendance()">
-    <input type="button" value="창닫기" onclick="window.close()">
+    <button type="button" onclick="checkAttendance()">출석하기</button>
+    <button type="button" onclick="window.close()">창닫기</button>
+</div>
 </body>
 </html>
