@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="./css/style.css">
     <script src="./src/node_modules/axios/dist/axios.min.js">
         
     </script>
     <link rel="stylesheet" href="./css/style.css">
 <meta charset="EUC-KR">
-    <title>Child</title>
+    <title>초대 코드 입력</title>
     <script type="text/javascript">
         
         
@@ -40,11 +41,13 @@
 </head>
 <body>
     <br>
+    <div class="popUpForm">
     <b><font size="5" color="gray">새로운 방에 참가하기</font></b>
     <br><br>
  
     <input type="text" id="inviteCode" placeholder="모임 초대 코드"><br><br>
-    <input type="button" value="입장하기" onclick="enterNewRoom()">
-    <input type="button" value="창닫기" onclick="window.close()">
+    <button type="button" onclick="enterNewRoom()">입장하기</button>
+    <button type="button" onclick="window.close()">창닫기</button>
+    </div>
 </body>
 </html>

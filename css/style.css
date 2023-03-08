@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@1,600&family=Germania+One&family=Phudu:wght@500&display=swap');  
+@font-face {
+  font-family: 'NanumSquareNeo-Variable';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+  *{
+    font-family: 'NanumSquareNeo-Variable';
+  }
   body {
     background-color: white;
     padding: 30px;
@@ -22,6 +32,18 @@
     font-size: 18px;
     margin-right: 50px;
   }
+  .logo{
+    position: absolute;
+    left: 0;
+    margin-left: 100px;
+    
+  }
+  .logo a {
+    font-size: 56px;
+    font-family: 'Phudu', cursive;
+    color: #2BAE66;
+    
+  }
   
   .accountInfo{
     position: absolute;
@@ -37,7 +59,7 @@
     
   }
 
-  .room {
+  .room{
     display: flex;
     width: 350px;
     height: 300px;
@@ -50,6 +72,16 @@
     box-shadow: 0 0 5px #6D6D6D;
     background-color: #ECFCF3;
     border-radius: 1em;
+    transition: all 0.5s ;
+  }
+  .room:hover{
+    border-radius: 2em;
+    box-shadow: 0 0 10px;
+  }
+  .room:active{
+    transition: all 0.1s ;
+    transform: translate(10px, 5px)
+    
   }
   .roominfo {
     display: flex;
@@ -75,6 +107,11 @@
     justify-content: center;
   }
 
+  .popUpForm{
+    text-align: center;
+    top: 50%;
+    
+  }
   #roomForm{
       
   }
@@ -92,6 +129,11 @@ button {
     color: white;
     padding: 15px 20px;
     border-radius: 1em;
+    transition: all 0.2s ;
+    cursor: pointer;
+}
+button:hover {
+  background: #21825B;
 }
 
 #buttonGroup{

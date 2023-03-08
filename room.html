@@ -5,22 +5,28 @@
   <link rel="stylesheet" href="./css/style.css">
   <script src = "./src/room.js" type="module"></script>
   <script>
+    
     function openTodaysCode(){
+      let popupX = (document.body.offsetWidth/2) - (450/2);
+      let popupY = (window.screen.height/2) - (250/2)
       const nowId = location.href.split('id=');
       console.log(nowId[1]);
       window.name = "parentForm";
-      window.open(`todaysCode.html?id=${nowId[1]}`,"childForm","width=570, height=350, resizable = no, scrollbars = no")
+      window.open(`todaysCode.html?id=${nowId[1]}`,"오늘의 모임코드",`width=450, height=250, resizable = no, scrollbars = no,top=${popupY}, left=${popupX}`)
     }
     const attend = () => {
+      let popupX = (document.body.offsetWidth/2) - (450/2);
+      let popupY = (window.screen.height/2) - (250/2)
       const nowGuid = location.href.split('guid=');
         console.log(nowGuid[1]);
         window.name = "parentForm";
-        window.open(`attend.html?guid=${nowGuid[1]}`,"childForm","width=570, height=350, resizable = no, scrollbars = no");
+        window.open(`attend.html?guid=${nowGuid[1]}`,"출석하기",`width=450, height=250, resizable = no, scrollbars = no, top=${popupY}, left=${popupX}`);
     }
   </script>
 </head>
 <body>
   <div class="navigation">
+    <div class="logo"><a href="index.html">Attender</a></div>
     <a href="index.html">생성한 그룹</a>
     <a href="roomJoinList.html">참여중인 그룹</a>
     <a href="#">Contact</a>

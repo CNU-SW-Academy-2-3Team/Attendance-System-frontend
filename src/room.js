@@ -1,7 +1,7 @@
 import { API_END_POINT } from "./API.js";
 const url = new URL(window.location.href);
 const roomId = url.searchParams.get('id');
-
+const userUid = sessionStorage.getItem('UID')
 const $roomInfo = document.querySelector('.roominfo');    
 axios.get(`${API_END_POINT}/group/${roomId}`)
 .then((response) => {
@@ -13,7 +13,7 @@ axios.get(`${API_END_POINT}/group/${roomId}`)
   
   
 
-  if(room.master_uid === Number(sessionStorage.getItem('UID'))){
+  if(room.master_uid === Number(userUid)){
     roomElement.innerHTML = `
       <div id="roomTitle">
         <h3>${room.group_title}</h3>
@@ -34,11 +34,14 @@ axios.get(`${API_END_POINT}/group/${roomId}`)
     `;
 
   }
-  const userUid = sessionStorage.getItem('UID')
   const $navigation = document.querySelector('.navigation')
-  const navigationUser = document.createElement('div')
-  navigationUser.textContent = '현재 로그인한 유저' + userUid
-  $navigation.appendChild(navigationUser)
+  const navigationUserDiv = document.createElement('div')
+  navigationUserDiv.className = 'accountInfo'
+  const $accountMenu = document.createElement('a')
+  $accountMenu.href = "#"
+  $accountMenu.textContent = '현재 로그인한 유저' + userUid
+  navigationUserDiv.appendChild($accountMenu)
+  $navigation.appendChild(navigationUserDiv)
   $roomInfo.append(roomElement)   
 
     
