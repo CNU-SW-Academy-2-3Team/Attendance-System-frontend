@@ -13,8 +13,8 @@ axios.get(`${API_END_POINT}/user/${userUid}/groups/joined`)
     roomElement.innerHTML = `
       <h3>${room.group_title}</h3>
       <p>${room.group_detail}</p>
-      <p>by ${room.master_uid}</p>
-      <p>참가자 수 : ${room.head_count}</p>
+      <span>by ${room.master_uid}</span>
+      <!--<p>참가자 수 : ${room.head_count}</p>-->
     
     `;
     roomElement.addEventListener('click', () =>{
@@ -22,6 +22,10 @@ axios.get(`${API_END_POINT}/user/${userUid}/groups/joined`)
     });
     return roomElement;
   })
+  const $roomJoinButton = document.createElement('div')
+  $roomJoinButton.className = 'roomAppendButton'
+  $roomJoinButton.innerHTML =`<h3>새 그룹 참가하기</h3>`
+  
   const $navigation = document.querySelector('.navigation')
   const navigationUserDiv = document.createElement('div')
   navigationUserDiv.className = 'accountInfo'
@@ -30,7 +34,11 @@ axios.get(`${API_END_POINT}/user/${userUid}/groups/joined`)
   $accountMenu.textContent = '현재 로그인한 유저' + userUid
   navigationUserDiv.appendChild($accountMenu)
   $navigation.appendChild(navigationUserDiv)
+  $roomJoinButton.addEventListener('click', () => {
+    openInviteCode()
+  })
   $rooms.append(...roomElements)
+  $rooms.append($roomJoinButton)
 
 })
 .catch((err) => {

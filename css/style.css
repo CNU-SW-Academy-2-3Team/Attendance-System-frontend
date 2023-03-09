@@ -55,13 +55,13 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-around;
+    align-content: space-between;
     
   }
 
-  .room{
+  .room {
     display: flex;
-    width: 350px;
+    width: 380px;
     height: 300px;
     align-items: center;
     justify-content: center;
@@ -74,11 +74,46 @@
     border-radius: 1em;
     transition: all 0.5s ;
   }
+  .room p{
+    transform: scaleY(0);
+    transition: all 0.3s ;
+    
+  }
+  .room:hover p{
+    transform: scaleY(1);
+    
+  }
   .room:hover{
     border-radius: 2em;
     box-shadow: 0 0 10px;
+    
+    
   }
   .room:active{
+    transition: all 0.1s ;
+    transform: translate(10px, 5px)
+    
+  }
+  .roomAppendButton{
+    display: flex;
+    width: 380px;
+    height: 300px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+    margin:25px;
+    border: none;
+    box-shadow: 0 0 5px #6D6D6D;
+    background-color: #D3D3D3;
+    border-radius: 1em;
+    transition: all 0.5s ;
+  }
+  .roomAppendButton:hover{
+    border-radius: 2em;
+    box-shadow: 0 0 10px;
+  }
+  .roomAppendButton:active{
     transition: all 0.1s ;
     transform: translate(10px, 5px)
     
@@ -107,9 +142,10 @@
     justify-content: center;
   }
 
-  .popUpForm{
+  .codeForm{
+    display: none;
     text-align: center;
-    top: 50%;
+    margin-top: 10%;
     
   }
   #roomForm{
