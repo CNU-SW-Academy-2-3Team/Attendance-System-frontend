@@ -14,7 +14,7 @@
     <a href="#">Contact</a>
   </div>
   <div id="buttonGroup">
-    <button type="button" onClick="location.href='roomCreate.html'">새 모임 만들기</button>
+    <!-- <button type="button" onClick="location.href='roomCreate.html'">새 모임 만들기</button> -->
     
     <button type="button" onClick="sessionStorage.setItem('UID', '3');location.reload()">유저3 로긴하기</button>
     <button type="button" onClick="sessionStorage.setItem('UID', '5');location.reload()">유저5 로긴하기</button>
@@ -23,7 +23,11 @@
 
   <div class="roomlist">
   </div>
-
+  <div class="floatingBtn">
+    <span class="createNewRoom">
+      <a class="createBtn" href="roomCreate.html">새 모임 만들기</a>
+    </span>
+  </div>
     
 </body>
 

@@ -3,6 +3,12 @@ const $rooms = document.querySelector('.roomlist');
 const userUid = sessionStorage.getItem('UID');
 axios.get(`${API_END_POINT}/user/${userUid}/groups/joined`)
 .then((response) => {
+  if(response.data.length === 0){
+  const $roomNull = document.createElement('div')
+  $roomNull.className = 'roomNullButton'
+  $roomNull.innerHTML =`<h3>참가중인 방이 없습니다.</h3>`
+  $rooms.append($roomNull)
+  }
   const rooms = response.data;
   const roomElements = rooms.map((room) => {
     const roomElement = document.createElement('div');
@@ -22,9 +28,6 @@ axios.get(`${API_END_POINT}/user/${userUid}/groups/joined`)
     });
     return roomElement;
   })
-  const $roomJoinButton = document.createElement('div')
-  $roomJoinButton.className = 'roomAppendButton'
-  $roomJoinButton.innerHTML =`<h3>새 그룹 참가하기</h3>`
   
   const $navigation = document.querySelector('.navigation')
   const navigationUserDiv = document.createElement('div')
@@ -34,11 +37,8 @@ axios.get(`${API_END_POINT}/user/${userUid}/groups/joined`)
   $accountMenu.textContent = '현재 로그인한 유저' + userUid
   navigationUserDiv.appendChild($accountMenu)
   $navigation.appendChild(navigationUserDiv)
-  $roomJoinButton.addEventListener('click', () => {
-    openInviteCode()
-  })
   $rooms.append(...roomElements)
-  $rooms.append($roomJoinButton)
+  
 
 })
 .catch((err) => {
