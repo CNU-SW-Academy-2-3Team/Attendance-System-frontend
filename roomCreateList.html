@@ -3,15 +3,7 @@
 <head>
   <script src="./src/node_modules/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="./css/style.css">
-  <script src = "./src/index.js" type="module"></script>
-  <script>
-    function logOut(){
-    sessionStorage.clear()
-    location.reload()
-  }
-
-  </script>
-  
+  <script src = "./src/roomList.js" type="module"></script>
 </head>
 <body>
   <div class="navigation">
@@ -27,11 +19,15 @@
     <button type="button" onClick="sessionStorage.setItem('UID', '3');location.reload()">유저3 로긴하기</button>
     <button type="button" onClick="sessionStorage.setItem('UID', '5');location.reload()">유저5 로긴하기</button>
   </div>
-  <div><h2>뭔가 메인페이지로 사용될 예정..</h2></div>
+  <div><h2>내가 생성한 그룹</h2></div>
 
   <div class="roomlist">
   </div>
-  
+  <div class="floatingBtn">
+    <span class="createNewRoom">
+      <a class="createBtn" href="roomCreate.html">새 그룹 만들기</a>
+    </span>
+  </div>
     
 </body>
 

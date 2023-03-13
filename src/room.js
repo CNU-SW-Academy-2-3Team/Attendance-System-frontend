@@ -40,7 +40,7 @@ axios.get(`${API_END_POINT}/group/${roomId}`)
   const navigationUserDiv = document.createElement('div')
   navigationUserDiv.className = 'accountInfo'
   const $accountMenu = document.createElement('a')
-  $accountMenu.href = "#"
+  $accountMenu.href = "userInfo.html"
   $accountMenu.textContent = '현재 로그인한 유저' + userUid
   navigationUserDiv.appendChild($accountMenu)
   $navigation.appendChild(navigationUserDiv)

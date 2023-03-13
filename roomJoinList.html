@@ -41,7 +41,7 @@
   <div class="navigation">
     <div class="logo"><a href="index.html">Attender</a></div>
     
-    <a href="index.html">생성한 그룹</a>
+    <a href="roomCreateList.html">생성한 그룹</a>
     <a href="roomJoinList.html">참여중인 그룹</a>
     <a href="#">Contact</a>
   </div>
@@ -51,22 +51,22 @@
     <button type="button" onClick="sessionStorage.setItem('UID', '3');location.reload()">유저3 로긴하기</button>
     <button type="button" onClick="sessionStorage.setItem('UID', '5');location.reload()">유저5 로긴하기</button>
   </div>
-  <div><h2>내가 참여중인 방</h2></div>
+  <div><h2>내가 참여중인 그룹</h2></div>
 
   <div class="roomlist">
   </div>
   <br>
     <div class="codeForm">
-    <b><font size="14" color="gray">새로운 방에 참가하기</font></b>
+    <b><font size="14" color="gray">새로운 그룹에 참가하기</font></b>
     <br><br>
  
-    <input type="text" id="inviteCode" placeholder="모임 초대 코드"><br><br>
+    <input type="text" id="inviteCode" placeholder="그룹 초대 코드"><br><br>
     <button type="button" onclick="enterNewRoom()">입장하기</button>
     <button type="button" onclick="location.reload()">창닫기</button>
     </div>
     <div class="floatingBtn">
       <span class="createNewRoom">
-        <a class="createBtn" onclick="openInviteCode()">새 모임 참가하기</a>
+        <a class="createBtn" onclick="openInviteCode()">새 그룹 참가하기</a>
       </span>
     </div>
     
