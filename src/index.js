@@ -1,5 +1,6 @@
-const userUid = sessionStorage.getItem('UID')
 
+
+const userUid = sessionStorage.getItem('UID')
 const $navigation = document.querySelector('.navigation')
 const navigationUserDiv = document.createElement('div')
 navigationUserDiv.className = 'accountInfo'
@@ -12,7 +13,3 @@ $logOutBtn.textContent = '로그아웃'
 navigationUserDiv.append($accountMenu, $logOutBtn)
 $navigation.appendChild(navigationUserDiv)
 
-function logOut(){
-    sessionStorage.clear()
-    location.reload()
-}

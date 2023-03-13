@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Login Page</title>
+    <style>
+      /* 로고 이미지 스타일링 */
+      .logo {
+        width: 200px;
+        height: 200px;
+        margin: 50px;
+      }
+      
+
+    </style>
+  </head>
+  <body>
+    <img src="logo.png" alt="logo" class="logo">
+    <div class="loginForm">
+      <h2>Login</h2>
+      <form>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter password" required>
+        <button type="submit" class="button">Login</button>
+        <button type="button" class="button">회원가입</button>
+      </form>
+    </div>
+    <script>
+      // 로그인 버튼을 클릭하면 입력된 사용자 이름과 비밀번호를 가져와서 처리합니다.
+      document.querySelector('.button').addEventListener('click', function() {
+        window.location.href = 'index.html';
+      });
+    </script>
+    <div id="randText"></div>
+    <script>
+      var canvas = document.getElementById('randText');
+      var fontFamilies = [
+        'Arial',
+        'Verdana',
+        'Helvetica',
+        'Times New Roman',
+        'Courier New',
+        'Georgia',
+        'Comic Sans MS',
+        'Impact',
+        'Lucida Console',
+        'Tahoma',
+        'Crimson Text',
+        'Germania One'
+      ];
+      
+      // 텍스트 렌더링
+      for (let i = 0; i < 40; i++) {
+        let fontFamily = fontFamilies[Math.floor(Math.random() * fontFamilies.length)];
+        canvas.innerHTML += `<p style="font-family:${fontFamily}">Attender</p>`
+      }
+    </script>
+  </body>
+</html>

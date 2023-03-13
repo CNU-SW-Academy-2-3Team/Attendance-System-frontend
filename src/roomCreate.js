@@ -1,6 +1,6 @@
 
 import { API_END_POINT } from "./API.js";
-const $groupCreate = document.querySelector('.room-create')
+const $groupCreate = document.querySelector('.roomCreate')
 
 
 const groupCreateElements = document.createElement('form');
@@ -9,11 +9,14 @@ groupCreateElements.name = 'groupForm';
 groupCreateElements.id = 'groupForm';
 
 groupCreateElements.innerHTML = `
-    <p>방 이름</p>
-    <input type="text" id="groupName" class="input-line">
-    <p>방 설명</p>
-    <input type="text" id="groupDescription" class="input-line">
-    <button type="button" id="groupCreateButton">모임 개설하기</button>
+<b><font size="14" color="gray">새로운 그룹 생성하기</font></b>
+    <br><br>
+    <input type="text" placeholder="그룹 이름"id="groupName" class="input-line" style="width:200px; height:35px">
+    <br><br>
+    <input type="text" placeholder="그룹 설명"id="groupDescription" class="input-line" style="width:200px; height:35px">
+    <br><br>
+    <button type="button" id="groupCreateButton">그룹 개설하기</button>
+    <button type="button" onclick="history.back()">돌아가기</button>
 
 `;
 $groupCreate.appendChild(groupCreateElements);
@@ -59,7 +62,7 @@ function postGroupCreate(groupName,groupDes){
         alert(`그룹 개설이 완료되었습니다. 초대코드:${inviteCode}`)
         
        
-        location.href='index.html'
+        location.href='roomCreateList.html'
         
     })
     .catch(function (error) {
