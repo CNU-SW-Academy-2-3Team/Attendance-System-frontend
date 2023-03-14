@@ -35,6 +35,13 @@
                 alert("코드를 입력해 주세요")
             }
         }
+  function logOut(){
+    sessionStorage.clear()
+    location.reload()
+  }
+  if(sessionStorage.getItem('UID') == null){
+    location.replace('loginPage.html')
+  }
   </script>
 </head>
 <body>

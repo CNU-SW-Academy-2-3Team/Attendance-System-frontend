@@ -28,6 +28,7 @@
     <script>
       // 로그인 버튼을 클릭하면 입력된 사용자 이름과 비밀번호를 가져와서 처리합니다.
       document.querySelector('.button').addEventListener('click', function() {
+        sessionStorage.setItem('UID',3)
         window.location.href = 'index.html';
       });
     </script>

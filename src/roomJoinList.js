@@ -36,7 +36,10 @@ axios.get(`${API_END_POINT}/user/${userUid}/groups/joined`)
   const $accountMenu = document.createElement('a')
   $accountMenu.href = "userInfo.html"
   $accountMenu.textContent = '현재 로그인한 유저' + userUid
-  navigationUserDiv.appendChild($accountMenu)
+  const $logOutBtn = document.createElement('a')
+  $logOutBtn.href = 'javascript:logOut()';
+  $logOutBtn.textContent = '로그아웃' 
+  navigationUserDiv.append($accountMenu, $logOutBtn)
   $navigation.appendChild(navigationUserDiv)
   $rooms.append(...roomElements)
   

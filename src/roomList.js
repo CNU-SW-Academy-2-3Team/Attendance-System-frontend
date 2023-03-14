@@ -1,12 +1,13 @@
 import { API_END_POINT } from "./API.js";
 const $rooms = document.querySelector('.roomlist'); 
 const userUid = sessionStorage.getItem('UID');
+
 axios.get(`${API_END_POINT}/user/${userUid}/groups/created`)
-.then((response) => {
+.then(async(response) => {
   if(response.data.length === 0){
     const $roomNull = document.createElement('div')
     $roomNull.className = 'roomNullButton'
-    $roomNull.innerHTML =`<h3>참가중인 방이 없습니다.</h3>`
+    $roomNull.innerHTML =`<h3>생성한 그룹이 없습니다.</h3>`
     $rooms.append($roomNull)
     }
   else{
@@ -36,10 +37,12 @@ axios.get(`${API_END_POINT}/user/${userUid}/groups/created`)
   const $accountMenu = document.createElement('a')
   $accountMenu.href = "userInfo.html"
   $accountMenu.textContent = '현재 로그인한 유저' + userUid
-  navigationUserDiv.appendChild($accountMenu)
+  const $logOutBtn = document.createElement('a')
+  $logOutBtn.href = 'javascript:logOut()';
+  $logOutBtn.textContent = '로그아웃'
+  
+  navigationUserDiv.append($accountMenu, $logOutBtn)
   $navigation.appendChild(navigationUserDiv)
-
-
   $rooms.append(...roomElements)
   }
 })

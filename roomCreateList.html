@@ -4,6 +4,15 @@
   <script src="./src/node_modules/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="./css/style.css">
   <script src = "./src/roomList.js" type="module"></script>
+  <script>
+   function logOut(){
+    sessionStorage.clear()
+    location.reload()
+  }
+  if(sessionStorage.getItem('UID') == null){
+    location.replace('loginPage.html')
+  }
+  </script>
 </head>
 <body>
   <div class="navigation">

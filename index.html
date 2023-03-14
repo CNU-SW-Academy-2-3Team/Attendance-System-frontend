@@ -5,11 +5,13 @@
   <link rel="stylesheet" href="./css/style.css">
   <script src = "./src/index.js" type="module"></script>
   <script>
-    function logOut(){
+  function logOut(){
     sessionStorage.clear()
     location.reload()
   }
-
+  if(sessionStorage.getItem('UID') == null){
+    location.replace('loginPage.html')
+  }
   </script>
   
 </head>
