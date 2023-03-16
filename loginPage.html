@@ -63,7 +63,10 @@
         'Fixedsys',
         'Terminal',
         'Segoe Print',
-        'Cambria'
+        'Cambria',
+        'Bebas Neue',
+        'Didot',
+        'American Typewriter',
       ];
       //랜덤 언어용 배열
       let language = [
@@ -81,17 +84,27 @@
       ]
       
       // 텍스트 렌더링
-      
-      for (let i = 0; i < 120; i++) {
+    async function renderText(){
+
+      let promise = new Promise((resolve,reject)=>{for (let i = 0; i < 120; i++) {
         let fontFamily = fontFamilies[Math.floor(Math.random() * fontFamilies.length)]; //랜덤 폰트 뽑기
         let langs = language[Math.floor(Math.random() * language.length)];              //랜덤 언어 뽑기
         const margin = Math.floor(Math.random() * 0);                                   //랜덤 마진 뽑기
-        canvas.innerHTML += `<p style="font-family:${fontFamily}; margin:1px">Attender</p>` //랜덤 언어 or 영어
+        canvas.innerHTML += `<p data-id='${i}'style="font-family:${fontFamily}; margin:1px">Attender</p>` //랜덤 언어 or 영어
+        
       }
-
+      return resolve()
+        }
+      )
+      await promise
       $randText.append(canvas)
       const textsMargin = ((Math.floor(Math.random() * 51) + 50) * -1);
       document.querySelector('.texts').style.margin=`${textsMargin}px`
+    }
+    renderText()
+    const randId = Math.floor(Math.random() * 60) + 20
+    const pTagSelected = document.querySelector('[data-id="10"]')
+    console.log(pTagSelected)
     </script>
     </div>
   </body>
