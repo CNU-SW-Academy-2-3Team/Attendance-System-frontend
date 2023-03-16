@@ -32,9 +32,9 @@
         window.location.href = 'index.html';
       });
     </script>
-    <div id="randText"></div>
+    <div id="rendText"></div>
     <script>
-      const $randText = document.querySelector('#randText')
+      const $rendText = document.querySelector('#rendText')
       let canvas = document.createElement('div')
       canvas.className = 'texts'
       //랜덤 폰트용 배열
@@ -86,25 +86,26 @@
       // 텍스트 렌더링
     async function renderText(){
 
-      let promise = new Promise((resolve,reject)=>{for (let i = 0; i < 120; i++) {
+      for (let i = 0; i < 120; i++) {
         let fontFamily = fontFamilies[Math.floor(Math.random() * fontFamilies.length)]; //랜덤 폰트 뽑기
         let langs = language[Math.floor(Math.random() * language.length)];              //랜덤 언어 뽑기
         const margin = Math.floor(Math.random() * 0);                                   //랜덤 마진 뽑기
         canvas.innerHTML += `<p data-id='${i}'style="font-family:${fontFamily}; margin:1px">Attender</p>` //랜덤 언어 or 영어
         
       }
-      return resolve()
-        }
-      )
-      await promise
-      $randText.append(canvas)
+      
+      $rendText.append(canvas)
+      const randId = Math.floor(Math.random() * 60) + 20
+      const pTagSelected = document.querySelector(`[data-id="50"]`)
+      pTagSelected.className = "neon"
+      pTagSelected.style.fontFamily = 'Monoton', cursive;
+      console.log(pTagSelected)
       const textsMargin = ((Math.floor(Math.random() * 51) + 50) * -1);
       document.querySelector('.texts').style.margin=`${textsMargin}px`
     }
     renderText()
-    const randId = Math.floor(Math.random() * 60) + 20
-    const pTagSelected = document.querySelector('[data-id="10"]')
-    console.log(pTagSelected)
+    
+    
     </script>
     </div>
   </body>

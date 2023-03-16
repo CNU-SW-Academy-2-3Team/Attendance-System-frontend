@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&family=Germania+One&family=Phudu:wght@500&family=Bebas+Neue&display=swap');  
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&family=Monoton&family=Germania+One&family=Phudu:wght@500&family=Bebas+Neue&display=swap');  
 @font-face {
   font-family: 'NanumSquareNeo-Variable';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
@@ -190,7 +190,7 @@
     box-sizing: border-box;
     font-size: 26px;
   }
-  #randText {
+  #rendText {
     width: 50%;
     height: 101vh;
     font-style: italic;
@@ -198,22 +198,26 @@
     color: #2BAE66;
     font-size: 60px;
     border: 1px solid #ccc;
-    background-color: #ffffff;
-    box-shadow:inset 0px 0px 40px 0px #ccc;
+    background-color: white;
+    /* box-shadow:inset 0px 0px 100px 0px #ccc; */
     flex-shrink: 0;
     overflow: hidden;
     font-weight: bold;
     
   }
   .texts{
+    z-index: 1;
     display: flex;
     flex-wrap: wrap;
     width: 1800px;
     height: 140vh;
-    flex-shrink: 0;
+   flex-shrink: 0;
+   
+   
   }
   .texts > p{
-
+   filter: brightness(0%);
+    
   }
 
 
@@ -379,55 +383,103 @@ button:hover {
     margin-bottom: 30px;
 }
 
-.neon {
-  font-family: neon;
-  color: #FB4264;
-  font-size: 9vw;
-  line-height: 9vw;
-  text-shadow: 0 0 3vw #F40A35;
+#rendText{
+animation: bgNeon 3s infinite;
+box-shadow: inset 1000px 1300px 50px rgba(5, 5, 5, 0.8);
 }
+  .neon {
+    animation: neon2 3s infinite;
+    color: #8BC34A;
+    
+    
+    
+    
+  }
+  p.neon{
+    filter: brightness(100%);
+    z-index: 2;
+    font-style: normal;
+    font-size: 72px;
+    
 
-.flux {
-  font-family: neon;
-  color: #426DFB;
-  font-size: 9vw;
-  line-height: 9vw;
-  text-shadow: 0 0 3vw #2356FF;
-}
+  }
+  
+  @keyframes neon2 {
+    0% {
+      color: #8BC34A;
+      text-shadow: 0 0 50px #8BC34A, 1px 1px 100px #d5e9bd, 0 0 280px #c3bf4a;
+    }
+    80% {
+      color: #8BC34A;
+      text-shadow: 0 0 50px #8BC34A, 1px 1px 100px #d5e9bd, 0 0 280px #c3bf4a;
+      
+    }
+    81% {
+      color: #222;
+      text-shadow: 0 0 10px #000, 1px 1px #634a52, -2px 0px 4px #29121A;
+    }
+    94% {
+      color: #222;
+      text-shadow: 0 0 10px #000, 1px 1px #634a52, -2px 0px 4px #29121A;
+    }
+    95% {
+      color: #8BC34A;
+      text-shadow: 0 0 50px #8BC34A, 1px 1px 100px #d5e9bd, 0 0 280px #c3bf4a;
+      
+    }
+    96% {
+      color: #222;
+      text-shadow: 0 0 10px #000, 1px 1px #634a52, -2px 0px 4px #29121A;
+    }
+    97% {
+      color: #8BC34A;
+      text-shadow: 0 0 50px #8BC34A, 1px 1px 100px #d5e9bd, 0 0 280px #c3bf4a;
+    }
+    98% {
+      color: #8BC34A;
+      text-shadow: 0 0 50px #8BC34A, 1px 1px 100px #d5e9bd, 0 0 280px #c3bf4a;
+    }
+    99% {
+      color: #222;
+      text-shadow: 0 0 10px #000, 1px 1px #634a52, -2px 0px 4px #29121A;
+    }
+    100% {
+      color: #8BC34A;
+      text-shadow: 0 0 50px #8BC34A, 1px 1px  100px #d5e9bd, 0 0 280px #c3bf4a;
+      
+    }
+  }
 
-.neon {
-  animation: neon 1s ease infinite;
-  -moz-animation: neon 1s ease infinite;
-  -webkit-animation: neon 1s ease infinite;
-}
 
-@keyframes neon {
-  0%,
+@keyframes bgNeon {
+  0% {
+    background-color: #313010;
+  }
+  80% {
+    background-color: #313010;
+  }
+  81% {
+    background-color: #111;
+  }
+  94% {
+    background-color: #111;
+  }
+  95% {
+    background-color: #313010;
+  }
+  96% {
+    background-color: #111;
+  }
+  97% {
+    background-color: #313010;
+  }
+  98% {
+    background-color: #313010;
+  }
+  99% {
+    background-color: #111;
+  }
   100% {
-    text-shadow: 0 0 1vw #FA1C16, 0 0 3vw #FA1C16, 0 0 10vw #FA1C16, 0 0 10vw #FA1C16, 0 0 .4vw #FED128, .5vw .5vw .1vw #806914;
-    color: #FED128;
-  }
-  50% {
-    text-shadow: 0 0 .5vw #800E0B, 0 0 1.5vw #800E0B, 0 0 5vw #800E0B, 0 0 5vw #800E0B, 0 0 .2vw #800E0B, .5vw .5vw .1vw #40340A;
-    color: #806914;
-  }
-}
-
-.flux {
-  animation: flux 2s linear infinite;
-  -moz-animation: flux 2s linear infinite;
-  -webkit-animation: flux 2s linear infinite;
-  -o-animation: flux 2s linear infinite;
-}
-
-@keyframes flux {
-  0%,
-  100% {
-    text-shadow: 0 0 1vw #1041FF, 0 0 3vw #1041FF, 0 0 10vw #1041FF, 0 0 10vw #1041FF, 0 0 .4vw #8BFDFE, .5vw .5vw .1vw #147280;
-    color: #28D7FE;
-  }
-  50% {
-    text-shadow: 0 0 .5vw #082180, 0 0 1.5vw #082180, 0 0 5vw #082180, 0 0 5vw #082180, 0 0 .2vw #082180, .5vw .5vw .1vw #0A3940;
-    color: #146C80;
+    background-color: #313010;
   }
 }
