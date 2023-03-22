@@ -1,5 +1,3 @@
-
-
 const userUid = sessionStorage.getItem('UID')
 const $navigation = document.querySelector('.navigation')
 const navigationUserDiv = document.createElement('div')

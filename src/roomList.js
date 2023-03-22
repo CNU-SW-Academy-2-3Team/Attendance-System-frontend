@@ -19,7 +19,7 @@ axios.get(`${API_END_POINT}/user/${userUid}/groups/created`)
     roomElement.innerHTML = `
       <h3>${room.group_title}</h3>
       <p>${room.group_detail}</p>
-      <span>by ${room.master_uid}</span>
+      <span>by ${room.leader_uid}</span>
       <!--<p>참가자 수 : ${room.head_count}</p>-->
     
     `;

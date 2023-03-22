@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+  
   <script src="./src/node_modules/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="./css/style.css">
   <script src = "./src/index.js" type="module"></script>
+  
   <script>
   function logOut(){
     sessionStorage.clear()
@@ -30,12 +32,69 @@
     <button type="button" onClick="sessionStorage.setItem('UID', '5');location.reload()">유저5 로긴하기</button>
   </div>
   <div><h2>뭔가 메인페이지로 사용될 예정..</h2></div>
+  <div class="mainContents">
+    <div class="mainSlogan">
+      <span>만국의 </span><div id="js-textRotate"></div><span>이여 단결하라</span>
+      <p>그대들이 잃을 것은 불편함이요</p>
+      <p>얻을 것은 편리함이다.</p>
+    </div>
+    
+    <div class="mainInfomation">
+      <div class="nowAmountInfomation">
+        <div>현재 개설된 그룹 수 sample 개</div>
+        <div>현재 회원 수 sample 명</div>
 
-  <div class="roomlist">
+      </div>
+    </div>
   </div>
-  
     
 </body>
+<script>
+  let positions =[
+    '모임회장',
+    '선생님',
+    '관리직',
+    '동아리회장',
+    '그룹장',
+  ]
+
+  const $textRotate = document.querySelector('#js-textRotate')
+  const texts = document.createElement('div')
+  texts.className = 'textsUl'
+  
+  
+  
+  // positions.map((jobs) => {
+
+  //   texts.innerHTML += `<li>${jobs}</li>`
+  // })
+  $textRotate.appendChild(texts)
+  const textsUl = document.querySelector('.textsUl')
+  textsUl.textContent = `${positions[positions.length-1]}`;
+
+  // $textRotate.appendChild(texts)
+  let intervalId;
+  let i = 0;
+  function animation(){
+    
+    textsUl.textContent = `${positions[i]}`;
+    i += 1;
+    if(i >= positions.length){
+      i =0;
+    }
+    
+      clearInterval(intervalId)
+      interval()
+    }
+  
+  
+  function interval() {
+    intervalId = setInterval(animation,2000/1)
+    
+  }
+  interval()
 
 
+
+</script>
 </html>

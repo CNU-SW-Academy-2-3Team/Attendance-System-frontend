@@ -11,7 +11,9 @@ axios.get(`${API_END_POINT}/user/${userUid}/groups/joined`)
   }
   else{
   const rooms = response.data;
-  const roomElements = rooms.map((room) => {
+  const roomElements = rooms.map((roomobj) => {
+    const room = roomobj.group;
+    const guid = roomobj.guid;
     const roomElement = document.createElement('div');
     console.log(response)
     roomElement.className = 'room';
@@ -20,12 +22,12 @@ axios.get(`${API_END_POINT}/user/${userUid}/groups/joined`)
     roomElement.innerHTML = `
       <h3>${room.group_title}</h3>
       <p>${room.group_detail}</p>
-      <span>by ${room.master_uid}</span>
+      <span>by ${room.leader_uid}</span>
       <!--<p>참가자 수 : ${room.head_count}</p>-->
     
     `;
     roomElement.addEventListener('click', () =>{
-      window.location.href = `room.html?id=${room.gid}&guid=${room.guid}`;
+      window.location.href = `room.html?id=${room.gid}&guid=${guid}`;
     });
     return roomElement;
   })
