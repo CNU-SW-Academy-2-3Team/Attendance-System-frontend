@@ -31,10 +31,11 @@
     <button type="button" onClick="sessionStorage.setItem('UID', '3');location.reload()">유저3 로긴하기</button>
     <button type="button" onClick="sessionStorage.setItem('UID', '5');location.reload()">유저5 로긴하기</button>
   </div>
-  <div><h2>뭔가 메인페이지로 사용될 예정..</h2></div>
   <div class="mainContents">
     <div class="mainSlogan">
-      <span>만국의 </span><div id="js-textRotate"></div><span>이여 단결하라</span>
+      <span>만국의</span>
+      <span id="js-textRotate"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+      <p>단결하라</p>
       <p>그대들이 잃을 것은 불편함이요</p>
       <p>얻을 것은 편리함이다.</p>
     </div>
@@ -51,15 +52,15 @@
 </body>
 <script>
   let positions =[
-    '모임회장',
-    '선생님',
-    '관리직',
-    '동아리회장',
-    '그룹장',
+    '모임회장 이여',
+    '선생님 이여',
+    '관리직 이여',
+    '동아리회장 이여',
+    '그룹장 이여',
   ]
 
   const $textRotate = document.querySelector('#js-textRotate')
-  const texts = document.createElement('div')
+  const texts = document.createElement('span')
   texts.className = 'textsUl'
   
   

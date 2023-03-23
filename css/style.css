@@ -72,20 +72,34 @@
     font-size: 67px;
   }
   #js-textRotate{
-    overflow: hidden;
-    position: relative;
+    position: absolute;
     height: 67px;
+    animation-name: flipInX;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
     
   }
-  
-  @keyframes scrollUp {
-    from {
-      transform: translateY(70px);
+  @keyframes flipInX {
+    0% {
+       perspective-origin: center;
+       transform: perspective(3000px) rotateX(120deg);
+       opacity: 0;
     }
-    to {
-      transform: translateY(-300px);
-  }
-  }
+    40% {
+       perspective-origin: center;
+       transform: perspective(3000px) rotateX(-15deg);
+    }
+    70% {
+       perspective-origin: center;
+       transform: perspective(3000px) rotateX(15deg);
+    }
+    100% {
+       perspective-origin: center;
+       transform: perspective(3000px) rotateX(0deg);
+       opacity: 1;
+    }
+ } 
+  
   .roomlist {
     display: flex;
     flex-wrap: wrap;
