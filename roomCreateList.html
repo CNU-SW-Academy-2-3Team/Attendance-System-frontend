@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="./src/node_modules/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./src/roomList.js" type="module"></script>
+    <script>
+      function logOut() {
+        sessionStorage.clear();
+        location.reload();
+      }
+      if (sessionStorage.getItem("UID") == null) {
+        location.replace("loginPage.html");
+      }
+    </script>
+  </head>
+  <body>
+    <div class="navigation">
+      <div class="logo"><a href="index.html">Attender</a></div>
+
+      <a href="roomCreateList.html">생성한 그룹</a>
+      <a href="roomJoinList.html">참여중인 그룹</a>
+      <a href="#">Contact</a>
+    </div>
+    <div id="buttonGroup">
+      <!-- <button type="button" onClick="location.href='roomCreate.html'">새 모임 만들기</button> -->
+
+      <button type="button" onClick="sessionStorage.setItem('UID', '3');location.reload()">유저3 로긴하기</button>
+      <button type="button" onClick="sessionStorage.setItem('UID', '5');location.reload()">유저5 로긴하기</button>
+      <button type="button" onClick="sessionStorage.setItem('UID', '7');location.reload()">유저7 로긴하기</button>
+    </div>
+    <div><h2>내가 생성한 그룹</h2></div>
+
+    <div class="roomlist"></div>
+    <div class="floatingBtn">
+      <span class="createNewRoom">
+        <a class="createBtn" href="roomCreate.html">새 그룹 만들기</a>
+      </span>
+    </div>
+  </body>
+</html>

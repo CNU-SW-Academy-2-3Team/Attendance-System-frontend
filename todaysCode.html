@@ -1,56 +1,51 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="stylesheet" href="./css/style.css">
+  <head>
+    <link rel="stylesheet" href="./css/style.css" />
 
-    <script src="./src/node_modules/axios/dist/axios.min.js">
-        
-    </script>
-    <script src = "./src/roomJoinList.js" type="module"></script>
+    <script src="./src/node_modules/axios/dist/axios.min.js"></script>
+    <script src="./src/roomJoinList.js" type="module"></script>
 
-<meta charset="EUC-KR">
+    <meta charset="EUC-KR" />
     <title>출석 코드 생성</title>
     <script type="text/javascript">
-        
-        
-        function setExpiredTime(){
-            const url = new URL(window.location.href);
-            const roomId = url.searchParams.get('id');
-            if(document.getElementById("startTime").value && document.getElementById("endTime").value){
-                console.log(document.getElementById("startTime").value)
-                    console.log(document.getElementById("endTime").value)
-                axios.put(`http://localhost:8080/api/attendance`,{
-                    'gid': roomId,
-                    'acceptStartTime' : document.getElementById("startTime").value,
-                    'acceptEndTime' : document.getElementById("endTime").value
-
-                })
-                .then((response) => {
-                    console.log(response);
-                    console.log(document.getElementById("startTime").value);
-                    console.log(document.getElementById("endTime").value);
-                    opener.location.reload();
-                    window.close();
-
-                })
-                
-            }else{
-                alert("시간을 정확하게 입력해주세요")
-            }
+      function setExpiredTime() {
+        const url = new URL(window.location.href);
+        const roomId = url.searchParams.get("id");
+        if (document.getElementById("startTime").value && document.getElementById("endTime").value) {
+          console.log(document.getElementById("startTime").value);
+          console.log(document.getElementById("endTime").value);
+          axios
+            .put(`http://localhost:8080/api/attendance`, {
+              gid: roomId,
+              acceptStartTime: document.getElementById("startTime").value,
+              acceptEndTime: document.getElementById("endTime").value,
+            })
+            .then((response) => {
+              console.log(response);
+              console.log(document.getElementById("startTime").value);
+              console.log(document.getElementById("endTime").value);
+              opener.location.reload();
+              window.close();
+            });
+        } else {
+          alert("시간을 정확하게 입력해주세요");
         }
-   </script>
- 
-</head>
-<body>
-    <div class="popUpForm">
-    <br>
-    <b><font size="5" color="gray">오늘의 모임 코드 생성하기</font></b>
-    <br><br>
- 
-    <p>시작시간</p><input type="datetime-local" id="startTime" value=""><br><br>
-    <p>종료시간</p><input type="datetime-local" id="endTime" value=""><br><br>
-    <button type="button"  onclick="setExpiredTime()">생성하기</button>
-    <button type="button"  onclick="window.close()">창닫기</button>
+      }
+    </script>
+  </head>
+  <body>
+    <div class="codeForm">
+      <br />
+      <b><font size="5" color="gray">오늘의 출석 코드 생성하기</font></b>
+      <br /><br />
+
+      <p>시작시간</p>
+      <input type="datetime-local" id="startTime" value="" /><br /><br />
+      <p>종료시간</p>
+      <input type="datetime-local" id="endTime" value="" /><br /><br />
+      <button type="button" onclick="setExpiredTime()">생성하기</button>
+      <button type="button" onclick="window.close()">창닫기</button>
     </div>
-</body>
+  </body>
 </html>

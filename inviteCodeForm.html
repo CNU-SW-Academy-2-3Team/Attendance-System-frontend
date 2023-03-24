@@ -1,53 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="./src/node_modules/axios/dist/axios.min.js">
-        
-    </script>
-    <link rel="stylesheet" href="./css/style.css">
-<meta charset="EUC-KR">
+  <head>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./src/node_modules/axios/dist/axios.min.js"></script>
+
+    <meta charset="EUC-KR" />
     <title>초대 코드 입력</title>
     <script type="text/javascript">
-        
-        
-        function enterNewRoom(){
-            
-            
-            if(document.getElementById("inviteCode").value){
-                const uid = sessionStorage.getItem('UID')
-                const inviteCode = document.getElementById("inviteCode").value
-                console.log(uid)
-                console.log(inviteCode)
-                axios.post(`http://localhost:8080/api/group/join`,{
-                    'uid': uid,
-                    'invite_code' : inviteCode
-                    
-
-                })
-                .then((response) => {
-                    console.log(response);
-                    opener.location.reload();
-                    //window.close();
-
-                })
-                
-            }else{
-                alert("코드를 입력해 주세요")
-            }
+      function enterNewRoom() {
+        if (document.getElementById("inviteCode").value) {
+          const uid = sessionStorage.getItem("UID");
+          const inviteCode = document.getElementById("inviteCode").value;
+          console.log(uid);
+          console.log(inviteCode);
+          axios
+            .post(`http://localhost:8080/api/group/join`, {
+              uid: uid,
+              invite_code: inviteCode,
+            })
+            .then((response) => {
+              console.log(response);
+              opener.location.reload();
+              //window.close();
+            });
+        } else {
+          alert("코드를 입력해 주세요");
         }
-   </script>
- 
-</head>
-<body>
-    <br>
+      }
+    </script>
+  </head>
+  <body>
+    <br />
     <div class="popUpForm">
-    <b><font size="5" color="gray">새로운 방에 참가하기</font></b>
-    <br><br>
- 
-    <input type="text" id="inviteCode" placeholder="모임 초대 코드"><br><br>
-    <button type="button" onclick="enterNewRoom()">입장하기</button>
-    <button type="button" onclick="window.close()">창닫기</button>
+      <b><font size="5" color="gray">새로운 그룹에 참가하기</font></b>
+      <br /><br />
+
+      <input type="text" id="inviteCode" placeholder="그룹 초대 코드" /><br /><br />
+      <button type="button" onclick="enterNewRoom()">입장하기</button>
+      <button type="button" onclick="window.close()">창닫기</button>
     </div>
-</body>
+  </body>
 </html>
