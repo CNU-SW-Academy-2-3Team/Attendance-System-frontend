@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style.css" />
     <title>로그인</title>
     <style>
-      body{
+      body {
         padding: 0;
         margin: 0;
         height: 100vh;
@@ -13,100 +13,84 @@
   </head>
   <body>
     <div class="loginPage">
-    <div class="loginForm">
-      <h1 style="margin-right: 250px;">로그인</h1>
-      <form>
-        <input type="text" id="username" name="username" placeholder="사용자 계정" required><br>
-        <input type="password" id="password" name="password" placeholder="비밀번호" required><br>
-        <button type="submit" class="button">로그인</button><br>
-        <div style="display: flex; flex-wrap:wrap; align-items: center; justify-content: center; align-content: space-between; ">
-          <p style="font-weight:lighter; color: #6D6D6D;">계정이 없으신가요?</p>
-          <a href="#" style="text-decoration: none; color: black; font-size:18px; font-weight:bold; margin-left: 15px;">회원가입</a>
-        </div>
-      </form>
-    </div>
-    <script>
-      // 로그인 버튼을 클릭하면 입력된 사용자 이름과 비밀번호를 가져와서 처리합니다.
-      document.querySelector('.button').addEventListener('click', function() {
-        sessionStorage.setItem('UID',3)
-        window.location.href = 'index.html';
-      });
-    </script>
-    <div id="rendText"></div>
-    <script>
-      const $rendText = document.querySelector('#rendText')
-      let canvas = document.createElement('div')
-      canvas.className = 'texts'
-      //랜덤 폰트용 배열
-      let fontFamilies = [
-        'Arial',
-        'Verdana',
-        'Helvetica',
-        'Times New Roman',
-        'Courier New',
-        'Georgia',
-        'Comic Sans MS',
-        'Impact',
-        'Lucida Console',
-        'Tahoma',
-        'Crimson Text',
-        'Germania One',
-        'NanumSquareNeo-Variable',
-        'Phudu',
-        'Sans-serif',
-        'Serif',
-        'Malgun Gothic',
-        'Batang',
-        'Lucida Console',
-        'Courier',
-        'Gabriola',
-        'Fixedsys',
-        'Terminal',
-        'Segoe Print',
-        'Cambria',
-        'Bebas Neue',
-        'Didot',
-        'American Typewriter',
-      ];
-      //랜덤 언어용 배열
-      let language = [
-        'Attender',
-        '어텐더',
-        '出席者',
-        'Teilnehmer',
-        'посетитель',
-        'παρευρισκόμενος',
-        'görevli',
-        '参加者',
-        'حاضر',
-        'Asistente',
-        'người phục vụ'
-      ]
-      
-      // 텍스트 렌더링
-    async function renderText(){
+      <div class="loginForm">
+        <h1 style="margin-right: 250px">로그인</h1>
+        <form>
+          <input type="text" id="username" name="username" placeholder="사용자 계정" required /><br />
+          <input type="password" id="password" name="password" placeholder="비밀번호" required /><br />
+          <button type="submit" class="button">로그인</button><br />
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; align-content: space-between">
+            <p style="font-weight: lighter; color: #6d6d6d">계정이 없으신가요?</p>
+            <a href="#" style="text-decoration: none; color: black; font-size: 18px; font-weight: bold; margin-left: 15px">회원가입</a>
+          </div>
+        </form>
+      </div>
+      <script>
+        // 로그인 버튼을 클릭하면 입력된 사용자 이름과 비밀번호를 가져와서 처리합니다.
+        document.querySelector(".button").addEventListener("click", function () {
+          sessionStorage.setItem("UID", 3);
+          window.location.href = "index.html";
+        });
+      </script>
+      <div id="rendText"></div>
+      <script>
+        const $rendText = document.querySelector("#rendText");
+        let canvas = document.createElement("div");
+        canvas.className = "texts";
+        //랜덤 폰트용 배열
+        let fontFamilies = [
+          "Arial",
+          "Verdana",
+          "Helvetica",
+          "Times New Roman",
+          "Courier New",
+          "Georgia",
+          "Comic Sans MS",
+          "Impact",
+          "Lucida Console",
+          "Tahoma",
+          "Crimson Text",
+          "Germania One",
+          "NanumSquareNeo-Variable",
+          "Phudu",
+          "Sans-serif",
+          "Serif",
+          "Malgun Gothic",
+          "Batang",
+          "Lucida Console",
+          "Courier",
+          "Gabriola",
+          "Fixedsys",
+          "Terminal",
+          "Segoe Print",
+          "Cambria",
+          "Bebas Neue",
+          "Didot",
+          "American Typewriter",
+        ];
+        //랜덤 언어용 배열
+        let language = ["Attender", "어텐더", "出席者", "Teilnehmer", "посетитель", "παρευρισκόμενος", "görevli", "参加者", "حاضر", "Asistente", "người phục vụ"];
 
-      for (let i = 0; i < 120; i++) {
-        let fontFamily = fontFamilies[Math.floor(Math.random() * fontFamilies.length)]; //랜덤 폰트 뽑기
-        let langs = language[Math.floor(Math.random() * language.length)];              //랜덤 언어 뽑기
-        const margin = Math.floor(Math.random() * 0);                                   //랜덤 마진 뽑기
-        canvas.innerHTML += `<p data-id='${i}'style="font-family:${fontFamily}; margin:1px">Attender</p>` //랜덤 언어 or 영어
-        
-      }
-      
-      $rendText.append(canvas)
-      const randId = Math.floor(Math.random() * 60) + 20
-      const pTagSelected = document.querySelector(`[data-id="50"]`)
-      pTagSelected.className = "neon"
-      pTagSelected.style.fontFamily = 'Monoton', cursive;
-      console.log(pTagSelected)
-      const textsMargin = ((Math.floor(Math.random() * 51) + 50) * -1);
-      document.querySelector('.texts').style.margin=`${textsMargin}px`
-    }
-    renderText()
-    
-    
-    </script>
+        // 텍스트 렌더링
+        async function renderText() {
+          for (let i = 0; i < 120; i++) {
+            let fontFamily = fontFamilies[Math.floor(Math.random() * fontFamilies.length)]; //랜덤 폰트 뽑기
+            let langs = language[Math.floor(Math.random() * language.length)]; //랜덤 언어 뽑기
+            const margin = Math.floor(Math.random() * 0); //랜덤 마진 뽑기
+            canvas.innerHTML += `<p data-id='${i}'style="font-family:${fontFamily}; margin:1px">Attender</p>`; //랜덤 언어 or 영어
+          }
+
+          $rendText.append(canvas);
+          const randId = Math.floor(Math.random() * 60) + 20;
+          const pTagSelected = document.querySelector(`[data-id="50"]`);
+          pTagSelected.className = "neon";
+          (pTagSelected.style.fontFamily = "Monoton"), cursive;
+          console.log(pTagSelected);
+          const textsMargin = (Math.floor(Math.random() * 51) + 50) * -1;
+          document.querySelector(".texts").style.margin = `${textsMargin}px`;
+        }
+        renderText();
+      </script>
     </div>
   </body>
 </html>

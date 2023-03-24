@@ -1,79 +1,124 @@
 <!DOCTYPE html>
 <html>
-<head>
-  
-  <script src="./src/node_modules/axios/dist/axios.min.js"></script>
-  <link rel="stylesheet" href="./css/style.css">
-  <script src = "./src/room.js" type="module"></script>
-  <script>
-    function setExpiredTime(){
-            const url = new URL(window.location.href);
-            const roomId = url.searchParams.get('id');
-            if(document.getElementById("startTime").value && document.getElementById("endTime").value){
-                console.log(document.getElementById("startTime").value)
-                    console.log(document.getElementById("endTime").value)
-                axios.put(`http://localhost:8080/api/attendance`,{
-                    'gid': roomId,
-                    'acceptStartTime' : document.getElementById("startTime").value,
-                    'acceptEndTime' : document.getElementById("endTime").value
-
-                })
-                .then((response) => {
-                    console.log(response);
-                    console.log(document.getElementById("startTime").value);
-                    console.log(document.getElementById("endTime").value);
-                    alert(`출석 코드가 생성되었습니다.`)
-                    location.reload();
-                    
-
-                })
-                
-            }else{
-                alert("시간을 정확하게 입력해주세요")
-            }
+  <head>
+    <script src="./src/node_modules/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./src/room.js" type="module"></script>
+    <script>
+      function setExpiredTime() {
+        const url = new URL(window.location.href);
+        const roomId = url.searchParams.get("id");
+        if (document.getElementById("startTime").value && document.getElementById("endTime").value) {
+          console.log(document.getElementById("startTime").value);
+          console.log(document.getElementById("endTime").value);
+          axios
+            .put(`http://localhost:8080/api/attendance`, {
+              gid: roomId,
+              acceptStartTime: document.getElementById("startTime").value,
+              acceptEndTime: document.getElementById("endTime").value,
+            })
+            .then((response) => {
+              console.log(response);
+              console.log(document.getElementById("startTime").value);
+              console.log(document.getElementById("endTime").value);
+              alert(`출석 코드가 생성되었습니다.`);
+              location.reload();
+            });
+        } else {
+          alert("시간을 정확하게 입력해주세요");
         }
-    function openTodaysCode(){
-      document.querySelector('.roominfo').style.display = 'none';
-      document.querySelector('.codeForm').style.display = 'block';
-      document.querySelector('h2').style.display = 'none';
-      document.querySelector('.makeInviteCode').style.display = 'none';
-    }
-    const attend = () => {
-      let popupX = (document.body.offsetWidth/2) - (450/2);
-      let popupY = (window.screen.height/2) - (250/2)
-      const nowGuid = location.href.split('guid=');
-        console.log(nowGuid[1]);
-        window.name = "parentForm";
-        window.open(`attend.html?guid=${nowGuid[1]}`,"출석하기",`width=450, height=250, resizable = no, scrollbars = no, top=${popupY}, left=${popupX}`);
-    }
-  </script>
-</head>
-<body>
-  <div class="navigation">
-    <div class="logo"><a href="index.html">Attender</a></div>
-    <a href="roomCreateList.html">생성한 그룹</a>
-    <a href="roomJoinList.html">참여중인 그룹</a>
-    <a href="#">Contact</a>
-  </div>
+      }
+      function openTodaysCode() {
+        document.querySelector(".roominfo").style.display = "none";
+        document.querySelector(".codeForm").style.display = "block";
+        document.querySelector("h2").style.display = "none";
+        document.querySelector(".makeInviteCode").style.display = "none";
+      }
+      const attend = () => {
+        document.querySelector(".roominfo").style.display = "none";
+        document.querySelector(".attendForm").style.display = "block";
+        document.querySelector("h2").style.display = "none";
+        document.querySelector(".makeInviteCode").style.display = "none";
+      };
+      const leave = () => {
+        const url = new URL(window.location.href);
+        const guid = url.searchParams.get("guid");
+        let nowTime = new Date();
 
-  <div class="roominfo">
-    <h2 style="margin-left: 300px; margin-top: 120px;">출석 체크</h2>
-    
-  </div>
-  <div class="codeForm">
-    <br>
-    <b><font size="5" color="gray">오늘의 출석 코드 생성하기</font></b>
-    <br><br>
- 
-    <p>시작시간</p><input type="datetime-local" id="startTime" value=""><br><br>
-    <p>종료시간</p><input type="datetime-local" id="endTime" value=""><br><br>
-    <button type="button"  onclick="setExpiredTime()">생성하기</button>
-    <button type="button"  onclick="location.reload()">돌아가기</button>
+        axios
+          .patch(`http://localhost:8080/api/user/attendance`, {
+            guid: guid,
+            exit_time: nowTime,
+          })
+          .then(() => {
+            alert("퇴실이 완료 되었습니다.");
+            location.reload();
+          });
+      };
+      function checkAttendance() {
+        const url = new URL(window.location.href);
+        const guid = url.searchParams.get("guid");
+
+        if (document.getElementById("attendCode").value) {
+          // const guid =
+          const uid = sessionStorage.getItem("UID");
+          const attendCode = document.getElementById("attendCode").value;
+          let today = new Date();
+
+          axios
+            .post(`http://localhost:8080/api/user/attendance`, {
+              guid: guid,
+              attendance_code: attendCode,
+              enter_time: today,
+            })
+            .then((response) => {
+              if (response.data === "OK") {
+                alert("출석이 완료되었습니다.");
+                location.reload();
+              } else if (response.data === "FAIL") {
+                alert("잘못된 출석 코드 입니다.");
+              }
+            })
+            .catch(function (error) {
+              alert("잘못된 코드 입니다.");
+            });
+        } else {
+          alert("코드를 입력해 주세요");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="navigation">
+      <div class="logo"><a href="index.html">Attender</a></div>
+      <a href="roomCreateList.html">생성한 그룹</a>
+      <a href="roomJoinList.html">참여중인 그룹</a>
+      <a href="#">Contact</a>
     </div>
-  <div class="makeInviteCode">
-    
-  </div>
-    
-</body>
 
+    <div class="roominfo">
+      <h2 style="margin-left: 300px; margin-top: 120px">출석 체크</h2>
+    </div>
+    <div class="codeForm">
+      <br />
+      <b><font size="5" color="gray">오늘의 출석 코드 생성하기</font></b>
+      <br /><br />
+
+      <p>시작시간</p>
+      <input type="datetime-local" id="startTime" value="" /><br /><br />
+      <p>종료시간</p>
+      <input type="datetime-local" id="endTime" value="" /><br /><br />
+      <button type="button" onclick="setExpiredTime()">생성하기</button>
+      <button type="button" onclick="location.reload()">돌아가기</button>
+    </div>
+    <div class="makeInviteCode"></div>
+    <div class="attendForm">
+      <b><font size="5" color="gray">출석체크 하기</font></b>
+      <br /><br />
+
+      <input type="text" id="attendCode" placeholder="출석체크코드" /><br /><br />
+      <button type="button" onclick="checkAttendance()">출석하기</button>
+      <button type="button" onclick="location.reload()">돌아가기</button>
+    </div>
+  </body>
 </html>

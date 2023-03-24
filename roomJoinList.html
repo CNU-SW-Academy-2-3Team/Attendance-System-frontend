@@ -1,83 +1,84 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <script src="./src/node_modules/axios/dist/axios.min.js"></script>
-  <link rel="stylesheet" href="./css/style.css">
-  <script src = "./src/roomJoinList.js" type="module"></script>
-  <script>
-    function openInviteCode(){
-      document.querySelector('.roomlist').style.display = 'none';
-      document.querySelector('.codeForm').style.display = 'block';
-      document.querySelector('h2').style.display = 'none';
-      document.querySelector('.floatingBtn').style.display = 'none';
-    }
-    function enterNewRoom(){
-            
-            
-            if(document.getElementById("inviteCode").value){
-                const uid = sessionStorage.getItem('UID')
-                const inviteCode = document.getElementById("inviteCode").value
-                console.log(uid)
-                console.log(inviteCode)
-                axios.post(`http://localhost:8080/api/group/join`,{
-                    'uid': uid,
-                    'invite_code' : inviteCode
-                    
-
-                })
-                .then((response) => {
-                    console.log(response);
-                    location.reload()
-
-                })
-                
-            }else{
-                alert("코드를 입력해 주세요")
-            }
+  <head>
+    <script src="./src/node_modules/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./src/roomJoinList.js" type="module"></script>
+    <script>
+      function openInviteCode() {
+        document.querySelector(".roomlist").style.display = "none";
+        document.querySelector(".codeForm").style.display = "block";
+        document.querySelector("h2").style.display = "none";
+        document.querySelector(".floatingBtn").style.display = "none";
+      }
+      function enterNewRoom() {
+        if (document.getElementById("inviteCode").value) {
+          const uid = sessionStorage.getItem("UID");
+          const inviteCode = document.getElementById("inviteCode").value;
+          console.log(uid);
+          console.log(inviteCode);
+          axios
+            .post(`http://localhost:8080/api/group/join`, {
+              uid: uid,
+              invite_code: inviteCode,
+            })
+            .then((response) => {
+              if (response.data === "OK") {
+                alert("그룹 참가가 완료되었습니다.");
+                location.reload();
+              } else if (response.data === "Already Exist") {
+                alert("이미 참가한 그룹입니다.");
+                location.reload();
+              } else if (response.data === "FAIL") {
+                alert("잘못된 초대 코드입니다.");
+              }
+            })
+            .catch(function (error) {
+              console.log(error);
+              alert("잘못된 코드 입니다.");
+            });
+        } else {
+          alert("코드를 입력해 주세요");
         }
-  function logOut(){
-    sessionStorage.clear()
-    location.reload()
-  }
-  if(sessionStorage.getItem('UID') == null){
-    location.replace('loginPage.html')
-  }
-  </script>
-</head>
-<body>
-  <div class="navigation">
-    <div class="logo"><a href="index.html">Attender</a></div>
-    
-    <a href="roomCreateList.html">생성한 그룹</a>
-    <a href="roomJoinList.html">참여중인 그룹</a>
-    <a href="#">Contact</a>
-  </div>
-  <div>
-    <!-- <button type="button" onClick="location.href='roomCreate.html'">새 모임 만들기</button> -->
-    <!-- <button type="button" onClick="openInviteCode()">새 방에 참가하기</button> -->
-    <button type="button" onClick="sessionStorage.setItem('UID', '3');location.reload()">유저3 로긴하기</button>
-    <button type="button" onClick="sessionStorage.setItem('UID', '5');location.reload()">유저5 로긴하기</button>
-  </div>
-  <div><h2>내가 참여중인 그룹</h2></div>
+      }
+      function logOut() {
+        sessionStorage.clear();
+        location.reload();
+      }
+      if (sessionStorage.getItem("UID") == null) {
+        location.replace("loginPage.html");
+      }
+    </script>
+  </head>
+  <body>
+    <div class="navigation">
+      <div class="logo"><a href="index.html">Attender</a></div>
 
-  <div class="roomlist">
-  </div>
-  <br>
+      <a href="roomCreateList.html">생성한 그룹</a>
+      <a href="roomJoinList.html">참여중인 그룹</a>
+      <a href="#">Contact</a>
+    </div>
+    <div>
+      <button type="button" onClick="sessionStorage.setItem('UID', '3');location.reload()">유저3 로긴하기</button>
+      <button type="button" onClick="sessionStorage.setItem('UID', '5');location.reload()">유저5 로긴하기</button>
+      <button type="button" onClick="sessionStorage.setItem('UID', '7');location.reload()">유저7 로긴하기</button>
+    </div>
+    <div><h2>내가 참여중인 그룹</h2></div>
+
+    <div class="roomlist"></div>
+    <br />
     <div class="codeForm">
-    <b><font size="14" color="gray">새로운 그룹에 참가하기</font></b>
-    <br><br>
- 
-    <input type="text" id="inviteCode" placeholder="그룹 초대 코드" style="height: 35px;"><br><br>
-    <button type="button" onclick="enterNewRoom()">입장하기</button>
-    <button type="button" onclick="location.reload()">돌아가기</button>
+      <b><font size="14" color="gray">새로운 그룹에 참가하기</font></b>
+      <br /><br />
+
+      <input type="text" id="inviteCode" placeholder="그룹 초대 코드" style="height: 35px" /><br /><br />
+      <button type="button" onclick="enterNewRoom()">입장하기</button>
+      <button type="button" onclick="location.reload()">돌아가기</button>
     </div>
     <div class="floatingBtn">
       <span class="createNewRoom">
         <a class="createBtn" onclick="openInviteCode()">새 그룹 참가하기</a>
       </span>
     </div>
-    
-</body>
-
-
+  </body>
 </html>
