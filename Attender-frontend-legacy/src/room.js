@@ -22,7 +22,7 @@ axios
         <h3>${room.group_title}</h3>
       </div>
       <p>${room.group_detail}</p>
-      <p>인원 : ${count.data} 명</p>
+      <p>인원 : ${count.data ? count.data : "0"} 명</p>
       <p>초대 코드 : <span style="cursor:pointer;" class="inviteCode">${room.invite_code}</span><span style="cursor:pointer;" class="inviteCodeHide">초대코드 확인하기</span></p>
       <p>현재 출석 코드 : <span style="cursor:pointer;" class="attendCode">${
         room.attendance_code ? room.attendance_code : "생성된 코드가 없습니다."

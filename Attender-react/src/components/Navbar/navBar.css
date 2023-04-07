@@ -1,0 +1,33 @@
+.navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 3px #6d6d6d;
+  height: 50px;
+  padding: 20px;
+  margin: -30px;
+  margin-bottom: 30px;
+  border-bottom: none;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  margin-right: 50px;
+  transition: 0.3s;
+}
+
+.navigation a:hover {
+  color: #2bae66;
+}
+.logo {
+  position: absolute;
+  left: 0;
+  margin-left: 100px;
+}
+.logo a {
+  font-size: 56px;
+  font-family: "Phudu", cursive;
+  color: #2bae66;
+}
