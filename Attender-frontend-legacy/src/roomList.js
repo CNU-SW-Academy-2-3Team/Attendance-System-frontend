@@ -3,7 +3,7 @@ const $rooms = document.querySelector(".roomlist");
 const userUid = sessionStorage.getItem("UID");
 
 axios
-  .get(`${API_END_POINT}/user/${userUid}/group/created`)
+  .get(`${API_END_POINT}/user/${userUid}/groups/created`)
   .then(async (response) => {
     if (response.data.length === 0) {
       const $roomNull = document.createElement("div");

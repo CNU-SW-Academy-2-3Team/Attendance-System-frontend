@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState, useRef } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams, useNavigate } from "react-router-dom";
 import { API_END_POINT } from "../utils/API";
 
 const RoomPage = () => {
@@ -18,22 +18,38 @@ const RoomPage = () => {
   const attendCode = useRef();
   //------------------각종 선언부-------------------------//
 
+  const navigate = useNavigate();
+  const navigateToCodeGen = (e) => {
+    navigate(`/room/codeGen/${roomId}`);
+  };
+
   //------------------RoomInfo API 요청부-------------------------//
   const fetchRoomInfo = async () => {
     try {
       setError(null);
       setLoading(true);
       setRole(userUid);
-      await axios.all([axios.get(`${API_END_POINT}/group/${roomId}/${userUid}`), axios.get(`${API_END_POINT}/group/${roomId}/attendance`), axios.get(`${API_END_POINT}/group/${roomId}/count`)]).then(
-        axios.spread((response1, response2, response3) => {
-          const res1 = response1.data.groupInfo;
-          const attendanceState = response1.data.attendanceState;
-          const attendanceCode = response2.data;
-          const count = response3.data;
-          const response = { ...res1, attendanceCode, attendanceState, count };
-          setRoomInfo(response);
-        })
-      );
+      await axios
+        .all([
+          axios.get(`${API_END_POINT}/group/${roomId}/${userUid}`),
+          axios.get(`${API_END_POINT}/group/${roomId}/attendance`),
+          axios.get(`${API_END_POINT}/group/${roomId}/count`),
+        ])
+        .then(
+          axios.spread((response1, response2, response3) => {
+            const res1 = response1.data.groupInfo;
+            const attendanceState = response1.data.attendanceState;
+            const attendanceCode = response2.data;
+            const count = response3.data;
+            const response = {
+              ...res1,
+              attendanceCode,
+              attendanceState,
+              count,
+            };
+            setRoomInfo(response);
+          })
+        );
     } catch (e) {
       console.log(e.message);
       setError(e);
@@ -84,23 +100,43 @@ const RoomPage = () => {
             <p>인원 : {roomInfo.count}명</p>
             <p>
               초대 코드 :
-              <span className="inviteCode" style={{ cursor: "pointer" }} ref={inviteCode} onClick={copyCode}>
+              <span
+                className="inviteCode"
+                style={{ cursor: "pointer" }}
+                ref={inviteCode}
+                onClick={copyCode}
+              >
                 {roomInfo.invite_code}
               </span>
-              <span className="inviteCodeHide" style={{ cursor: "pointer" }} onClick={seeInviteCode}>
+              <span
+                className="inviteCodeHide"
+                style={{ cursor: "pointer" }}
+                onClick={seeInviteCode}
+              >
                 초대코드 확인하기
               </span>
             </p>
             <p>
               현재 출석 코드 :
-              <span className="attendCode" style={{ cursor: "pointer" }} ref={attendCode} onClick={copyCode}>
-                {roomInfo.attendance_code ? roomInfo.attendance_code : "생성된 코드가 없습니다."}
+              <span
+                className="attendCode"
+                style={{ cursor: "pointer" }}
+                ref={attendCode}
+                onClick={copyCode}
+              >
+                {roomInfo.attendance_code
+                  ? roomInfo.attendance_code
+                  : "생성된 코드가 없습니다."}
               </span>
-              <span className="attendCodeHide" style={{ cursor: "pointer" }} onClick={seeAttendCode}>
+              <span
+                className="attendCodeHide"
+                style={{ cursor: "pointer" }}
+                onClick={seeAttendCode}
+              >
                 출석코드 확인하기
               </span>
             </p>
-            <button type="button" onClick={""}>
+            <button type="button" onClick={navigateToCodeGen}>
               출석 코드 생성하기
             </button>
           </div>
