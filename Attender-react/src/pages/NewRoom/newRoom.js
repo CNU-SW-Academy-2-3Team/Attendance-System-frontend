@@ -13,7 +13,7 @@ const AddNewRoom = (props) => {
   });
 
   const [inviteCode, setInviteCode] = useState("");
-  sessionStorage.setItem("UID", "5");
+  // sessionStorage.setItem("UID", "5");
   const userUid = sessionStorage.getItem("UID");
   let navigate = useNavigate();
   //------------------각종 선언부-------------------------//
