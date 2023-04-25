@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useState, useCallback, useEffect } from "react";
 
 const LoginPage = () => {
-  useEffect(() => {}, []);
   return (
     <div className="loginPage">
       <div className="loginForm">

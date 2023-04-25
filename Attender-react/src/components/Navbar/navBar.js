@@ -1,16 +1,11 @@
 import React, { useEffect } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import LoginBtn from "../LoginBtn/loginBtn";
 
-const path = window.location.pathname;
-
 const Navbar = () => {
-  useEffect(() => {
-    if (path === "/login") {
-      return console.log("unmount");
-    }
-  }, [path]);
+  const locationNow = useLocation();
+  if (locationNow.pathname === "/login") return null;
   return (
     <nav className="navigation">
       <div className="logo">

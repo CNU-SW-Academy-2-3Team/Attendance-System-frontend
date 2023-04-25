@@ -3,21 +3,16 @@ import { Navbar, FloatingBtn, UserBtn } from "./components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Main, AddNewRoom, RoomList, RoomPage, Attendace, CodeGen } from "../src/pages";
 import LoginPage from "./pages/Login/loginpage";
-
-const path = window.location.pathname;
+import { useEffect, useState } from "react";
 
 function App() {
+  let path = window.location.pathname;
+
   return (
     <div className="App">
       <BrowserRouter>
-        {path !== "/login" ? (
-          <>
-            <Navbar />
-            <UserBtn></UserBtn>
-          </>
-        ) : (
-          <></>
-        )}
+        <Navbar />
+        <UserBtn />
         <Routes>
           <Route path="/" element={<Main />}></Route>
           <Route path="/groupCreateList" element={<RoomList kind="groupCreate" />}></Route>
