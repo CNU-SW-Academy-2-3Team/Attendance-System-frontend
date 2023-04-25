@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import { API_END_POINT } from "../utils/API";
+import { API_END_POINT } from "../../components/utils/API";
 import { Link, useNavigate } from "react-router-dom";
-import FloatingBtn from "../FloatingBtn/floatingBtn";
+import FloatingBtn from "../../components/FloatingBtn/floatingBtn";
 
 const RoomList = (props) => {
   //------------------각종 선언부-------------------------//
@@ -11,15 +11,14 @@ const RoomList = (props) => {
   const [kind, setKind] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  sessionStorage.setItem("UID", "3");
   const userUid = sessionStorage.getItem("UID");
+  const [guid, setGuid] = useState(null);
   //------------------각종 선언부-------------------------//
 
   //------------------페이지 이동 함수-------------------------//
   const navigate = useNavigate();
   const navigateToRoomPage = (e) => {
-    navigate(`/room/${e.target.dataset.id}`);
+    navigate(`/room/${e.target.dataset.id}?guid=${e.target.dataset.guid}`);
   };
   //------------------페이지 이동 함수-------------------------//
 
@@ -74,6 +73,8 @@ const RoomList = (props) => {
         } else {
           setKind("groupJoin");
           setJoinGroupList(response.data);
+          setGuid(response.guid);
+
           console.log(response.data);
 
           // roomElement.addEventListener("click", () => {
@@ -123,7 +124,7 @@ const RoomList = (props) => {
       <>
         <div className="roomlist">
           {creatGroupList.map((room) => (
-            <div className="room" data-id={room.gid} key={room.gid} onClick={navigateToRoomPage}>
+            <div className="room" data-id={room.gid} data-guid={guid} key={room.gid} onClick={navigateToRoomPage}>
               <h3>{room.group_title}</h3>
               <p>{room.group_detail}</p>
               <span>By{room.leader_uid}</span>

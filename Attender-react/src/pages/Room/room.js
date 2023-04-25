@@ -1,11 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState, useRef } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
-import { API_END_POINT } from "../utils/API";
+import { useParams, useSearchParams, useNavigate } from "react-router-dom";
+import { API_END_POINT } from "../../components/utils/API";
 
 const RoomPage = () => {
   //------------------각종 선언부-------------------------//
-  sessionStorage.setItem("UID", "3");
   const userUid = sessionStorage.getItem("UID");
   const roomId = useParams().roomId;
   const [serchParams, setSerchParams] = useSearchParams();
@@ -17,6 +16,29 @@ const RoomPage = () => {
   const inviteCode = useRef();
   const attendCode = useRef();
   //------------------각종 선언부-------------------------//
+
+  const navigate = useNavigate();
+  const navigateToCodeGen = (e) => {
+    navigate(`/room/codeGen/${roomId}`);
+  };
+
+  const navigateToAttendance = (e) => {
+    navigate(`/room/attendance/${roomId}?guid=${guid}`);
+  };
+
+  const leave = () => {
+    let nowTime = new Date();
+
+    axios
+      .patch(`${API_END_POINT}/user/attendance`, {
+        guid: guid,
+        exit_time: nowTime,
+      })
+      .then(() => {
+        alert("퇴실이 완료 되었습니다.");
+        window.location.reload();
+      });
+  };
 
   //------------------RoomInfo API 요청부-------------------------//
   const fetchRoomInfo = async () => {
@@ -30,7 +52,12 @@ const RoomPage = () => {
           const attendanceState = response1.data.attendanceState;
           const attendanceCode = response2.data;
           const count = response3.data;
-          const response = { ...res1, attendanceCode, attendanceState, count };
+          const response = {
+            ...res1,
+            attendanceCode,
+            attendanceState,
+            count,
+          };
           setRoomInfo(response);
         })
       );
@@ -40,6 +67,7 @@ const RoomPage = () => {
     }
     setLoading(false);
   };
+  console.log(roomInfo);
   //------------------RoomInfo API 요청부-------------------------//
 
   //------------------RoomInfo API 함수 실행부-------------------------//
@@ -62,6 +90,7 @@ const RoomPage = () => {
       alert("코드가 복사되었습니다.");
     });
   };
+
   //------------------코드 확인 & 자동 복사 함수 실행부-------------------------//
 
   //------------------실제 렌더링부-------------------------//
@@ -94,13 +123,13 @@ const RoomPage = () => {
             <p>
               현재 출석 코드 :
               <span className="attendCode" style={{ cursor: "pointer" }} ref={attendCode} onClick={copyCode}>
-                {roomInfo.attendance_code ? roomInfo.attendance_code : "생성된 코드가 없습니다."}
+                {roomInfo.attendanceCode ? roomInfo.attendanceCode : "생성된 코드가 없습니다."}
               </span>
               <span className="attendCodeHide" style={{ cursor: "pointer" }} onClick={seeAttendCode}>
                 출석코드 확인하기
               </span>
             </p>
-            <button type="button" onClick={""}>
+            <button type="button" onClick={navigateToCodeGen}>
               출석 코드 생성하기
             </button>
           </div>
@@ -122,7 +151,7 @@ const RoomPage = () => {
               <p>
                 현재 상태 : <span style={{ color: "gray" }}>미출결</span>
               </p>
-              <button type="button" onClick={""}>
+              <button type="button" style={{ background: "gray" }}>
                 현재 활성화된 코드가 없습니다.
               </button>
             </div>
@@ -140,7 +169,7 @@ const RoomPage = () => {
               <p>
                 현재 상태 : <span style={{ color: "gray" }}>미출결</span>
               </p>
-              <button type="button" onClick={""}>
+              <button type="button" onClick={navigateToAttendance}>
                 출석 체크 하기
               </button>
             </div>
@@ -158,7 +187,7 @@ const RoomPage = () => {
               <p>
                 현재 상태 : <span style={{ color: "#2BAE66" }}>출석 완료</span>
               </p>
-              <button type="button" onClick={""}>
+              <button type="button" onClick={leave}>
                 퇴실 하기
               </button>
             </div>
@@ -176,8 +205,8 @@ const RoomPage = () => {
               <p>
                 현재 상태 : <span style={{ color: "#2BAE66" }}>퇴실 완료</span>
               </p>
-              <button type="button" onClick={""}>
-                퇴실 중..
+              <button type="button" onClick={navigateToAttendance}>
+                재출결
               </button>
             </div>
           </div>

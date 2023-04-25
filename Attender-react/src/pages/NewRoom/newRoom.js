@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_END_POINT } from "../utils/API";
+import { API_END_POINT } from "../../components/utils/API";
 
 const AddNewRoom = (props) => {
   //------------------각종 선언부-------------------------//
@@ -13,7 +13,7 @@ const AddNewRoom = (props) => {
   });
 
   const [inviteCode, setInviteCode] = useState("");
-  sessionStorage.setItem("UID", "5");
+  // sessionStorage.setItem("UID", "5");
   const userUid = sessionStorage.getItem("UID");
   let navigate = useNavigate();
   //------------------각종 선언부-------------------------//
